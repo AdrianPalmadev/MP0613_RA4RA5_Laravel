@@ -1,38 +1,65 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
+@section('title', 'Inicio')
 
-<body class="container py-4">
+@section('content')
 
-    <h1 class="text-center mb-4">Lista de Películas</h1>
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 
-    <nav class="mb-4">
-        <ul class="nav nav-pills justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" href="/filmout/oldFilms">Pelis antiguas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/filmout/newFilms">Pelis nuevas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/filmout/films">Pelis</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/filmout/countFilms">Contar peliculas</a>
-            </li>
-        </ul>
-    </nav>
+<div class="card p-4 mx-auto" style="max-width: 800px;">
+    <form action="{{ route('film') }}" method="POST">
+        @csrf
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name"
+                       placeholder="Nombre de la película" required>
+            </div>
 
-</body>
+            <div class="form-group col-md-6">
+                <label for="year">Año</label>
+                <input type="number" class="form-control" id="year" name="year"
+                       placeholder="Año de estreno" required>
+            </div>
+        </div>
 
-</html>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="genre">Género</label>
+                <input type="text" class="form-control" id="genre" name="genre"
+                       placeholder="Género de la película" required>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="img_url">Imagen</label>
+                <input type="url" class="form-control" id="img_url" name="img_url"
+                       placeholder="URL de la imagen" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="duration">Duración (minutos)</label>
+                <input type="number" class="form-control" id="duration" name="duration"
+                       placeholder="Duración en minutos" required>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="country">País</label>
+                <input type="text" class="form-control" id="country" name="country"
+                       placeholder="País de origen" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-3">
+            Guardar película
+        </button>
+    </form>
+</div>
+
+@endsection
