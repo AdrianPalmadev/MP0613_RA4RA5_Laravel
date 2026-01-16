@@ -37,7 +37,7 @@
 
             <div class="form-group col-md-6">
                 <label for="img_url">Imagen</label>
-                <input type="url" class="form-control" id="img_url" name="img_url"
+                <input type="text" class="form-control" id="img_url" name="img_url"
                        placeholder="URL de la imagen" required>
             </div>
         </div>
