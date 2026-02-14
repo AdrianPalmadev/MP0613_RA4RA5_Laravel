@@ -17,6 +17,7 @@ class ActorFakerSeeder extends Seeder
                 'name' => $faker->name,
                 'birth_date' => $faker->date(),
                 'country' => $faker->country,
+                'salary' => $faker->numberBetween(10000, 50000),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name', 255);
             $table->date('birth_date')->nullable();
             $table->string('country', 100);
+            $table->integer('salary');
             $table->timestamps();
         });
     }
