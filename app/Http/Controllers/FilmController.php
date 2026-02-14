@@ -99,6 +99,11 @@ class FilmController extends Controller
             return redirect('/')
                 ->with('error', 'La película ya existe');
         }
+        
+        if($request->duration <= 60 || $request->duration > 240){
+            return redirect('/')
+                ->with('error', 'La duración debe ser mayor a 60 minutos y menor a 240 minutos');
+        }
 
         $films = self::readFilms();
 
@@ -112,6 +117,7 @@ class FilmController extends Controller
         ];
 
 
+        
         Storage::put('/public/films.json', json_encode($films));
 
         return view('films.list', [
