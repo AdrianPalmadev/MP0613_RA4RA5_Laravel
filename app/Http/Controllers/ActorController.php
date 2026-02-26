@@ -15,4 +15,24 @@ class ActorController extends Controller
             'title' => 'Listado de Actores'
         ]);
     }
+
+    public function listActorsByDecade($year = null)
+    {
+        if (is_null($year)) {
+            return redirect()->route('actors');
+        }
+
+        $startYear = (int) $year;
+        $endYear = $startYear + 9;
+
+        $actors = Actor::whereBetween('birth_date', [
+            $startYear . '-01-01',
+            $endYear . '-12-31'
+        ])->get();
+
+        return view('actors.list', [
+            'actors' => $actors,
+            'title' => "Actors born between $startYear-$endYear"
+        ]);
+    }
 }
