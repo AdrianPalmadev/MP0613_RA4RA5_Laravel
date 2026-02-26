@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\ActorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,4 +31,17 @@ Route::prefix('filmin')
 
         Route::post('film', [FilmController::class, 'createFilm'])
             ->name('film');
+    });
+
+/*
+|--------------------------------------------------------------------------
+| ACTOR ROUTES (FR1)
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('actorout')
+    ->group(function () {
+
+        Route::get('actors', [ActorController::class, 'listActors'])
+            ->name('actors');
     });
