@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ActorController;
+use App\Http\Controllers\FilmController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -40,8 +40,13 @@ Route::prefix('filmin')
 */
 
 Route::prefix('actorout')
+    ->middleware('year')
     ->group(function () {
 
         Route::get('actors', [ActorController::class, 'listActors'])
             ->name('actors');
+
+        Route::get('actors/decade/{year?}', [ActorController::class, 'listActorsByDecade'])
+            ->name('actors.byDecade');
+
     });

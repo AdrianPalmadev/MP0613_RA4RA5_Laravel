@@ -97,14 +97,14 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actorsDropdown">
                         <a class="dropdown-item {{ request()->is('actorout/actors*') ? 'active' : '' }}" href="/actorout/actors">
-                            FR1 - List actors
+                            List actors
                         </a>
+                        <a class="dropdown-item" href="/actorout/actors/decade">List actors by decade</a>
 
                         <div class="dropdown-divider"></div>
 
                         <!-- Activa cuando implementes las rutas -->
                         <!--
-                        <a class="dropdown-item" href="/actorout/actors/decade">FR2 - List actors by decade</a>
                         <a class="dropdown-item" href="/actorout/countActors">FR3 - Count actors</a>
                         <a class="dropdown-item" href="/actorout/deleteActor">FR4 - Delete actor</a>
                         -->
