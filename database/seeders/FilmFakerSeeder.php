@@ -24,7 +24,7 @@ class FilmFakerSeeder extends Seeder
                     'Fiction'
                 ]),
                 'country' => $faker->country,
-                'duration' => $faker->numberBetween(80, 180),
+                'duration' => $faker->numberBetween(60, 210),
                 'img_url' => $faker->imageUrl(300, 450, 'movie'),
                 'created_at' => now(),
                 'updated_at' => now(),
