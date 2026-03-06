@@ -35,4 +35,12 @@ class ActorController extends Controller
             'title' => "Actors born between $startYear-$endYear"
         ]);
     }
+    public function countActors()
+{
+    $count = Actor::count();
+
+    return view('actors.count', [
+        'count' => $count
+    ]);
+}
 }

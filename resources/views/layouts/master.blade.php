@@ -102,10 +102,10 @@
                         <a class="dropdown-item" href="/actorout/actors/decade">List actors by decade</a>
 
                         <div class="dropdown-divider"></div>
-
+                        
+                        <a class="dropdown-item" href="/actorout/countActors">Count actors</a>
                         <!-- Activa cuando implementes las rutas -->
                         <!--
-                        <a class="dropdown-item" href="/actorout/countActors">FR3 - Count actors</a>
                         <a class="dropdown-item" href="/actorout/deleteActor">FR4 - Delete actor</a>
                         -->
                     </div>

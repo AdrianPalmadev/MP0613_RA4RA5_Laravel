@@ -49,4 +49,7 @@ Route::prefix('actorout')
         Route::get('actors/decade/{year?}', [ActorController::class, 'listActorsByDecade'])
             ->name('actors.byDecade');
 
+        Route::get('countActors', [ActorController::class, 'countActors'])
+            ->name('countActors');
+
     });
