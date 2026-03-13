@@ -10,8 +10,19 @@ class Actor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'birth_date',
+        'country',
+        'salary',
+    ];
+
+    protected $casts = [
+        'birth_date' => 'date',
+    ];
+
     public function films(): BelongsToMany
     {
-        return $this->belongsToMany(Film::class);
+        return $this->belongsToMany(Film::class)->withTimestamps();
     }
 }

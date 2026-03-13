@@ -2,27 +2,21 @@
 
 namespace Database\Seeders;
 
+use App\Models\Actor;
+use App\Models\Film;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class ActorFilmSeeder extends Seeder
 {
     public function run(): void
     {
-        $films = DB::table('films')->pluck('id');
-        $actors = DB::table('actors')->pluck('id');
+        $films = Film::all();
+        $actors = Actor::all();
 
-        foreach ($films as $filmId) {
-            $actorsForFilm = $actors->random(rand(1, 4));
+        foreach ($films as $film) {
+            $actorsForFilm = $actors->random(rand(1, min(4, $actors->count())));
 
-            foreach ($actorsForFilm as $actorId) {
-                DB::table('actor_film')->insert([
-                    'film_id' => $filmId,
-                    'actor_id' => $actorId,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }
+            $film->actors()->syncWithoutDetaching($actorsForFilm->pluck('id')->all());
         }
     }
 }
