@@ -8,6 +8,10 @@ use App\Models\Film;
 
 class FilmController extends Controller
 {
+    public function index()
+    {
+        return response()->json(Film::with('actors')->get());
+    }
 
     /**
      * Read films from storage
