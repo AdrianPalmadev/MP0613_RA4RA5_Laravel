@@ -10,8 +10,17 @@ class Film extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'year',
+        'genre',
+        'img_url',
+        'duration',
+        'country',
+    ];
+
     public function actors(): BelongsToMany
     {
-        return $this->belongsToMany(Actor::class);
+        return $this->belongsToMany(Actor::class)->withTimestamps();
     }
 }
