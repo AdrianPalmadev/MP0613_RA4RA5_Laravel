@@ -12,7 +12,7 @@ class ActorController extends Controller
 
         return view('actors.list', [
             'actors' => $actors,
-            'title' => 'Listado de Actores'
+            'title' => 'Listado de Actores',
         ]);
     }
 
@@ -26,21 +26,41 @@ class ActorController extends Controller
         $endYear = $startYear + 9;
 
         $actors = Actor::whereBetween('birth_date', [
-            $startYear . '-01-01',
-            $endYear . '-12-31'
+            $startYear.'-01-01',
+            $endYear.'-12-31',
         ])->get();
 
         return view('actors.list', [
             'actors' => $actors,
-            'title' => "Actors born between $startYear-$endYear"
+            'title' => "Actors born between $startYear-$endYear",
         ]);
     }
-    public function countActors()
-{
-    $count = Actor::count();
 
-    return view('actors.count', [
-        'count' => $count
-    ]);
-}
+    public function countActors()
+    {
+        $count = Actor::count();
+
+        return view('actors.count', [
+            'count' => $count,
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $actor = Actor::find($id);
+
+        if (! $actor) {
+            return response()->json([
+                'action' => 'delete',
+                'status' => false,
+            ]);
+        }
+
+        $deleted = $actor->delete();
+
+        return response()->json([
+            'action' => 'delete',
+            'status' => $deleted,
+        ]);
+    }
 }
